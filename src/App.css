@@ -1,3 +1,57 @@
+/* APP Component */
+/* body in the main page */
+.body{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-flow: row;
+  overflow-wrap: normal;
+}
+
+/* HEADER Component */
+/* logos */
+.logos{
+  display: inline-flex;
+}
+
+@media screen and (min-width: 769px) { 
+/*nav bar in big screens*/
+.nav{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+}
+
+/*in smaller screens...*/
+@media screen and (max-width: 769px) { 
+  .nav{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  /*menu*/
+  .nav-right{
+    display: inline-flex;
+    flex-direction: row;
+    margin: 0 auto;
+  }
+}
+
+/* HOUSES Component */
+/* container of the house lists in the Houses component */
+.containerHouseLists{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+
+}
+
+/* back button */
+.back-button{
+  margin: 0 auto;
+  display: block;
+}
+
+/* HOUSE Component */
+/* house logo in the House Component */
 .houseLogo{
   height: 100px;
   margin-left: auto;
@@ -6,11 +60,14 @@
   display: block;
 }
 
-.container{
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
+/* characters in the list */
+.is-button:hover{
+  background-color: #EFEFEF;
+  cursor: pointer;
 }
 
+/* PROFILE Component */
+/* profile container style */
 .profile{
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -21,12 +78,13 @@
   /* box-shadow: lightgrey 2px 2px 2px 2px; */
 }
 
+/* House logo in the profile */
 .profileHouse{
   width: 200px;
   padding-right: 25px;
-  /* border-right: 1px solid black; */
 }
 
+/* description part in the profile */
 .right{
   margin-left: 10px;
 }

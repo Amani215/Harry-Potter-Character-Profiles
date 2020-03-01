@@ -1,0 +1,9 @@
+*the problem is that the main page is responsive at first but when you go to another one and the go back to it it's not 
+responsive anymore..
+*the problem is that I can't get Flow to work (it's essential to keep the type character in only one file)
+
+ TO DO:
+Add the About and Contact page (should they be in tsx too?)
+
+On the long term:
+*Add filters?

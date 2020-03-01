@@ -1,12 +1,16 @@
 import React from "react";
+import axios from "axios";
+
+//Components
 import Header from "./components/Header";
 import Search from "./components/Search";
 import Houses from "./components/Houses";
 import Profile from "./components/Profile";
-import axios from "axios";
 
+//style
 import "./App.css";
 
+//define the type character
 type character = {
   id: string;
   name: string;
@@ -26,17 +30,19 @@ type character = {
   animagus: string;
 };
 
+//API key
 const key = "$2a$10$eGkdptUndJyrJ5F6Nj4dqeb6jkh0w7uW6epilhov6PxMUrHLa8R8a";
+
 class App extends React.Component {
   state = {
-    fullList: [],
-    gryffin: [],
-    huff: [],
-    raven: [],
-    slyth: [],
-    keyword: "",
-    searched: false,
-    searchedArray: []
+    fullList: [], //essential for the Search component
+    gryffin: [], //Gryffindor list
+    huff: [], //Hufflepuff
+    raven: [], //Ravenclaw
+    slyth: [], //Slytherin
+    keyword: "", //Typed text in the search bar
+    searched: false, //to control what the page is showing (lists or profiles)
+    searchedArray: [] //result of the search
   };
 
   //sorting the characters from the api
@@ -50,7 +56,10 @@ class App extends React.Component {
       .get(`https://www.potterapi.com/v1/characters?key=${key}`)
       .then(res => {
         res.data.forEach((elem: character) => {
+          //put the character in the full list
           fullList.push(elem);
+
+          //put the character in his/her corresponding house list
           switch (elem.house) {
             case "Gryffindor":
               gryffin.push(elem);
@@ -66,6 +75,7 @@ class App extends React.Component {
               break;
           }
         });
+        //set the lists in the state
         this.setState({
           huff: huff,
           raven: raven,
@@ -76,10 +86,7 @@ class App extends React.Component {
       });
   }
 
-  equalStrings = (elem: character) => {
-    return elem.name === this.state.keyword;
-  };
-
+  //returns true if the typed word in the search bar exists in the name of the character
   stringExistsInside = (elem: character) => {
     let s: string = "";
     const keyword: string = this.state.keyword;
@@ -93,6 +100,7 @@ class App extends React.Component {
     return false;
   };
 
+  //returns a list of the characters who have the typed word in the search bar in their names
   search = async (title: string) => {
     if (title === "") this.setState({ searched: false });
     else {
@@ -104,9 +112,10 @@ class App extends React.Component {
   };
 
   render() {
+    //if there's nothing typed in the search bar show the lists
     if (this.state.searched === false)
       return (
-        <div className="App">
+        <div className="body">
           <Header />
           <Search search={this.search} />
           <Houses
@@ -117,12 +126,13 @@ class App extends React.Component {
           />
         </div>
       );
+    //if there's something typed in the search bar show the profiles of the corresponding characters (from the searchedArray in the state)
     else
       return (
-        <div className="App">
+        <div className="body">
           <Header />
           <Search search={this.search} />
-          {this.state.searchedArray.map((elem: character, index:number) => (
+          {this.state.searchedArray.map((elem: character, index: number) => (
             <Profile key={index} characterProfile={elem} />
           ))}
         </div>

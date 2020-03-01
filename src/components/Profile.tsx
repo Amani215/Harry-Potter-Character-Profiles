@@ -1,10 +1,15 @@
 import React, { Component } from "react";
+
+//houses logos
 import gryffinIMG from "./pics/Gryffindor.png";
 import huffIMG from "./pics/Hufflepuff.png";
 import ravenIMG from "./pics/Ravenclaw.png";
 import slythIMG from "./pics/Slytherin.png";
+
+//"no house" logo
 import sortedIMG from "./pics/sorted.jpg";
 
+//define the type character
 type character = {
   id: string;
   name: string;
@@ -27,6 +32,7 @@ type character = {
 export default class Profile extends Component<{
   characterProfile: character;
 }> {
+  //returns the logo corresponding to the house of the character passed in the props
   IMGResult = () => {
     let result;
     switch (this.props.characterProfile.house) {
@@ -42,12 +48,14 @@ export default class Profile extends Component<{
       case "Slytherin":
         result = slythIMG;
         break;
+      //if the house is unknown
       default:
         result = sortedIMG;
     }
     return result;
   };
 
+  //if the passed character has an alias then add it to description
   ifAlias = (): string => {
     let result: string = " ";
     if (this.props.characterProfile.alias)
@@ -59,9 +67,12 @@ export default class Profile extends Component<{
     return (
       <div>
         <div className="profile">
+          {/* House logo */}
           <div className="left">
-            <img src={this.IMGResult()} className="profileHouse" alt=""/>
+            <img src={this.IMGResult()} className="profileHouse" alt="" />
           </div>
+
+          {/* description */}
           <div className="right">
             <ul>
               <li>

@@ -42,7 +42,7 @@ export default class House extends Component<P> {
         <div>
           <div className="column">
             {/* the house logo (given in the props) */}
-            <img src={this.props.logo} className="houseLogo" alt="" />
+            <img src={this.props.logo} className="logo" alt="" />
 
             <hr />
 

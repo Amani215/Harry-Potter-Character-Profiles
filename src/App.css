@@ -52,7 +52,7 @@
 
 /* HOUSE Component */
 /* house logo in the House Component */
-.houseLogo{
+.logo{
   height: 100px;
   margin-left: auto;
   margin-right: auto;
@@ -87,4 +87,26 @@
 /* description part in the profile */
 .right{
   margin-left: 10px;
+}
+
+/*ABOUT Component*/
+.center-div{
+  margin: 0 20px;
+  text-align: center;
+}
+
+/*CONTACT Component*/
+.align-content{
+  display: inline-flex;
+  flex-direction: row;
+  margin: 0 auto;
+}
+
+.big{
+  font-size: 80px;
+  margin: 20px;
+}
+
+.margin-top{
+  margin-top: 50px;
 }

@@ -6,6 +6,8 @@ import Header from "./components/Header";
 import Search from "./components/Search";
 import Houses from "./components/Houses";
 import Profile from "./components/Profile";
+import About from "./components/About";
+import Contact from "./components/Contact"
 
 //style
 import "./App.css";
@@ -35,6 +37,7 @@ const key = "$2a$10$eGkdptUndJyrJ5F6Nj4dqeb6jkh0w7uW6epilhov6PxMUrHLa8R8a";
 
 class App extends React.Component {
   state = {
+    currentPage: "Home",
     fullList: [], //essential for the Search component
     gryffin: [], //Gryffindor list
     huff: [], //Hufflepuff
@@ -111,32 +114,53 @@ class App extends React.Component {
     }
   };
 
+  showPage = (clickedPage:string)=>{
+    this.setState({currentPage: clickedPage})
+  }
+
   render() {
     //if there's nothing typed in the search bar show the lists
-    if (this.state.searched === false)
-      return (
+    if (this.state.currentPage === "Home") {
+      if (this.state.searched === false)
+        return (
+          <div className="body">
+            <Header showPage={this.showPage}/>
+            <Search search={this.search} />
+            <Houses
+              gryffin={this.state.gryffin}
+              huff={this.state.huff}
+              raven={this.state.raven}
+              slyth={this.state.slyth}
+            />
+          </div>
+        );
+      //if there's something typed in the search bar show the profiles of the corresponding characters (from the searchedArray in the state)
+      else
+        return (
+          <div className="body">
+            <Header showPage={this.showPage}/>
+            <Search search={this.search} />
+            {this.state.searchedArray.map((elem: character, index: number) => (
+              <Profile key={index} characterProfile={elem} />
+            ))}
+          </div>
+        );
+    }
+    else if(this.state.currentPage==="About")
+      return(
         <div className="body">
-          <Header />
-          <Search search={this.search} />
-          <Houses
-            gryffin={this.state.gryffin}
-            huff={this.state.huff}
-            raven={this.state.raven}
-            slyth={this.state.slyth}
-          />
+          <Header showPage={this.showPage}/>
+          <About />
+          {/* <Footer /> */}
         </div>
-      );
-    //if there's something typed in the search bar show the profiles of the corresponding characters (from the searchedArray in the state)
-    else
-      return (
+      )
+      else
+      return(
         <div className="body">
-          <Header />
-          <Search search={this.search} />
-          {this.state.searchedArray.map((elem: character, index: number) => (
-            <Profile key={index} characterProfile={elem} />
-          ))}
+          <Header showPage={this.showPage} />
+          <Contact />
         </div>
-      );
+      )
   }
 }
 

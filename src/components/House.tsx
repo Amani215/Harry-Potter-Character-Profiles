@@ -32,11 +32,7 @@ type P = {
 };
 
 export default class House extends Component<P> {
-  state = {
-    char: {}
-  };
-
-  render() {
+render() {
     return (
       <div>
         <div>
@@ -54,9 +50,6 @@ export default class House extends Component<P> {
                   className="panel-block is-button"
                   //when a name is clicked
                   onClick={() => {
-                    //set the state to the clicked character
-                    this.setState({ char: elem });
-
                     //call the function clicked(given in the props) for that character
                     this.props.clicked(elem);
                   }}

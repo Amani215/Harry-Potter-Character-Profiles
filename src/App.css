@@ -5,6 +5,7 @@
   grid-template-columns: 1fr;
   grid-auto-flow: row;
   overflow-wrap: normal;
+  overflow: initial;
 }
 
 /* HEADER Component */

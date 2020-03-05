@@ -7,7 +7,7 @@ import Search from "./components/Search";
 import Houses from "./components/Houses";
 import Profile from "./components/Profile";
 import About from "./components/About";
-import Contact from "./components/Contact"
+import Contact from "./components/Contact";
 
 //style
 import "./App.css";
@@ -114,53 +114,71 @@ class App extends React.Component {
     }
   };
 
-  showPage = (clickedPage:string)=>{
-    this.setState({currentPage: clickedPage})
-  }
+  showPage = async (clickedPage: string) => {
+    await this.setState({ searched: false, searchedArray: [] });
+    await this.setState({ currentPage: clickedPage });
+  };
+
+  //function to show the profile when a character is clicked (called in the props of the house Component)
+  clicked = (elem: character) => {
+      let arrayOfElem = [elem];
+      this.setState({ searched: true, searchedArray: arrayOfElem });
+  };
+
+  //to show the lists again
+  back = () => {
+    this.setState({ searched: false, searchedArray: [] });
+  };
 
   render() {
-    //if there's nothing typed in the search bar show the lists
+    //if there's something typed in the search bar show the profiles of the corresponding characters (from the searchedArray in the state)
     if (this.state.currentPage === "Home") {
-      if (this.state.searched === false)
+      if (this.state.searched)
         return (
           <div className="body">
-            <Header showPage={this.showPage}/>
+            <Header showPage={this.showPage} />
+            <Search search={this.search} />
+            {this.state.searchedArray.map((elem: character, index: number) => (
+              <Profile key={index} characterProfile={elem} />
+            ))}
+            <button
+              className="back-button button is-primary"
+              onClick={this.back}
+            >
+              Back
+            </button>
+          </div>
+        );
+      //if there's nothing typed in the search bar show the lists
+      else
+        return (
+          <div className="body">
+            <Header showPage={this.showPage} />
             <Search search={this.search} />
             <Houses
               gryffin={this.state.gryffin}
               huff={this.state.huff}
               raven={this.state.raven}
               slyth={this.state.slyth}
+              clicked={this.clicked}
             />
           </div>
         );
-      //if there's something typed in the search bar show the profiles of the corresponding characters (from the searchedArray in the state)
-      else
-        return (
-          <div className="body">
-            <Header showPage={this.showPage}/>
-            <Search search={this.search} />
-            {this.state.searchedArray.map((elem: character, index: number) => (
-              <Profile key={index} characterProfile={elem} />
-            ))}
-          </div>
-        );
-    }
-    else if(this.state.currentPage==="About")
-      return(
+    } else if (this.state.currentPage === "About")
+      return (
         <div className="body">
-          <Header showPage={this.showPage}/>
+          <Header showPage={this.showPage} />
           <About />
           {/* <Footer /> */}
         </div>
-      )
-      else
-      return(
+      );
+    else
+      return (
         <div className="body">
           <Header showPage={this.showPage} />
           <Contact />
         </div>
-      )
+      );
   }
 }
 

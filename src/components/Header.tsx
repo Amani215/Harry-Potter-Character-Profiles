@@ -17,53 +17,55 @@ export default class Header extends Component<{ showPage: Function }> {
 
   render() {
     return (
-      <nav className="nav">
-        <div className="logos">
-          {/* app logo */}
-          <div className="nav-left">
-            <a className="nav-item" href="# ">
-              <img src={logo} alt="" />
-            </a>
-          </div>
+      <div className="header">
+        <nav className="nav">
+          <div className="logos">
+            {/* app logo */}
+            <div className="nav-left">
+              <a className="nav-item" href="# ">
+                <img src={logo} alt="" />
+              </a>
+            </div>
 
-          {/* Contact logos (like github and linkedIn) */}
-          <div className="contactLogos">
-            {/* <a className="nav-item" href="https://github.com/Amani215">
+            {/* Contact logos (like github and linkedIn) */}
+            <div className="contactLogos">
+              {/* <a className="nav-item" href="https://github.com/Amani215">
               <span className="icon">
                 <i className="fa fa-github"></i>
               </span>
             </a> */}
+            </div>
           </div>
-        </div>
 
-        {/* Menu */}
-        <div className="nav-right ">
-          <a
-            className="nav-item"
-            href="# "
-            onClick={this.onClick}
-            id={this.state.home}
-          >
-            Home
-          </a>
-          <a
-            className="nav-item"
-            href="# "
-            onClick={this.onClick}
-            id={this.state.about}
-          >
-            About
-          </a>
-          <a
-            className="nav-item"
-            href="# "
-            onClick={this.onClick}
-            id={this.state.contact}
-          >
-            Contact
-          </a>
-        </div>
-      </nav>
+          {/* Menu */}
+          <div className="nav-right ">
+            <a
+              className="nav-item"
+              href="# "
+              onClick={this.onClick}
+              id={this.state.home}
+            >
+              Home
+            </a>
+            <a
+              className="nav-item"
+              href="# "
+              onClick={this.onClick}
+              id={this.state.about}
+            >
+              About
+            </a>
+            <a
+              className="nav-item"
+              href="# "
+              onClick={this.onClick}
+              id={this.state.contact}
+            >
+              Contact
+            </a>
+          </div>
+        </nav>
+      </div>
     );
   }
 }

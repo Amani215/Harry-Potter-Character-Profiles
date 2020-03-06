@@ -9,32 +9,10 @@
 }
 
 /* HEADER Component */
-/* logos */
-.logos{
-  display: inline-flex;
-}
-
-@media screen and (min-width: 769px) { 
-/*nav bar in big screens*/
-.nav{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-}
-
-/*in smaller screens...*/
-@media screen and (max-width: 769px) { 
-  .nav{
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
-  /*menu*/
-  .nav-right{
-    display: inline-flex;
-    flex-direction: row;
-    margin: 0 auto;
-  }
+.header{
+  display:grid;
+  grid-template-columns: 1fr;
+  padding: 10px;
 }
 
 /* HOUSES Component */
@@ -110,4 +88,8 @@
 
 .margin-top{
   margin-top: 50px;
+}
+
+.back-button{
+  margin-bottom: 10px;
 }

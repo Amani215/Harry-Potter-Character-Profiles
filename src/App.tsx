@@ -104,11 +104,11 @@ class App extends React.Component {
   };
 
   //returns a list of the characters who have the typed word in the search bar in their names
-  search = async (title: string) => {
-    if (title === "") this.setState({ searched: false });
+  search = async (searchedText: string) => {
+    if (searchedText === "") this.setState({ searched: false });
     else {
       this.setState({ searched: true });
-      await this.setState({ keyword: title });
+      await this.setState({ keyword: searchedText });
       let newarray = this.state.fullList.filter(this.stringExistsInside);
       this.setState({ searchedArray: newarray });
     }
@@ -169,7 +169,6 @@ class App extends React.Component {
         <div className="body">
           <Header showPage={this.showPage} />
           <About />
-          {/* <Footer /> */}
         </div>
       );
     else
